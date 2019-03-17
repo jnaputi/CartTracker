@@ -1,0 +1,10 @@
+﻿USE [CartTracker]
+
+CREATE TABLE [Items] (
+	[ItemId] INT PRIMARY KEY IDENTITY(1, 1),
+	[Name] NVARCHAR	(128) NOT NULL UNIQUE,
+	[Description] NVARCHAR(256),
+	[IsAcquired] BIT NOT NULL DEFAULT(0),
+	[DateCreated] DATETIME NOT NULL,
+	[LastUpdated] DATETIME NOT NULL
+)
