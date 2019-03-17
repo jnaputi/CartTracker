@@ -1,4 +1,5 @@
 ﻿using CartTracker.Database;
+using CartTracker.Dependencies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +25,8 @@ namespace CartTracker
             {
                 options.UseSqlServer(Configuration["Database:SqlServer"]);
             });
+
+            DependencyManager.RegisterDependencies(services);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

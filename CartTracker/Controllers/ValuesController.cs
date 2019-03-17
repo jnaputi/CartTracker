@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CartTracker.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CartTracker.Controllers
@@ -10,11 +7,18 @@ namespace CartTracker.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly CategoryRepository _repository;
+
+        public ValuesController(CategoryRepository repository)
+        {
+            _repository = repository;
+        }
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IActionResult GetCategories()
         {
-            return new string[] { "value1", "value2" };
+            return new ObjectResult(new string[] { "One", "Two", "Three" });
         }
 
         // GET api/values/5

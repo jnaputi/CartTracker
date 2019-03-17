@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CartTracker.Repositories
 {
-    public interface IRepository
+    public interface IRepository<TModel> where TModel : class
     {
-        
+        Task<ICollection<TModel>> GetAllAsync();
     }
 }

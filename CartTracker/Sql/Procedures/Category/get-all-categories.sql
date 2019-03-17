@@ -18,7 +18,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE 'GetAllCategories'
+CREATE PROCEDURE "GetAllCategories"
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
