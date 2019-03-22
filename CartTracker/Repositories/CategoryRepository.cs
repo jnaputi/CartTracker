@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CartTracker.Repositories
 {
-    public class CategoryRepository
+    public class CategoryRepository : IRepository<Category>
     {
         private readonly CartTrackerContext _context;
 
@@ -16,7 +16,7 @@ namespace CartTracker.Repositories
             _context = context;
         }
 
-        public async Task<ICollection<Category>> GetAll()
+        public async Task<ICollection<Category>> GetAllAsync()
         {
             IQueryable<Category> categories = _context.Categories.FromSql("EXEC GetAllCategories");
 

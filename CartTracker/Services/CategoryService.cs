@@ -9,9 +9,9 @@ namespace CartTracker.Services
 {
     public class CategoryService
     {
-        private readonly CategoryRepository _categoryRepository;
+        private readonly IRepository<Category> _categoryRepository;
 
-        public CategoryService(CategoryRepository categoryRepository)
+        public CategoryService(IRepository<Category> categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }
@@ -22,11 +22,11 @@ namespace CartTracker.Services
 
             try
             {
-                categories = await _categoryRepository.GetAll();
+                categories = await _categoryRepository.GetAllAsync();
             }
             catch(SqlException e)
             {
-                return new QueryResult<ICollection<Category>>(null, "There was an error with the database.  Please try again later");
+                return new QueryResult<ICollection<Category>>(categories, "There was an error with the database.  Please try again later");
             }
 
             return new QueryResult<ICollection<Category>>(categories);
