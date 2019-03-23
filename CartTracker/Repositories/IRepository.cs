@@ -6,5 +6,7 @@ namespace CartTracker.Repositories
     public interface IRepository<TModel> where TModel : class
     {
         Task<ICollection<TModel>> GetAllAsync();
+        Task<bool> DataExistsAsync(TModel entityToCheck);
+        Task AddAsync(TModel newEntity);
     }
 }

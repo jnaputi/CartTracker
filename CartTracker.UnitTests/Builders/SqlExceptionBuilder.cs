@@ -72,11 +72,6 @@ namespace CartTracker.UnitTests.Builders
 
         private SqlException CreateException(SqlErrorCollection errorCollection)
         {
-            if (errorCollection == null)
-            {
-                return null;
-            }
-
             var constructors = typeof(SqlException).GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance);
             var firstConstructor = constructors.FirstOrDefault();
             

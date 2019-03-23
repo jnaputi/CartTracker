@@ -13,6 +13,7 @@ namespace CartTracker.Dependencies
             services.AddScoped<CartTrackerContext>();
             services.AddScoped<IRepository<Category>, CategoryRepository>();
             services.AddScoped<CategoryService>();
+            services.AddScoped<IService<Category>, CategoryService>();
         }
     }
 }
