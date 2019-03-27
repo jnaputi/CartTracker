@@ -4,6 +4,6 @@ mono: none
 dotnet: 2.1.502
 install:
   - dotnet restore
-  - dotnet add xunit-runners -Version 2.4.1 -OutputDirectory test-runner
+  - dotnet add xunit.runner.visualstudio -Version 2.4.1 -OutputDirectory test-runner
 script:
 - dotnet test
