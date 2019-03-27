@@ -3,7 +3,7 @@ solution: CartTracker.sln
 mono: none
 dotnet: 2.1.502
 install:
-  - nuget restore CartTracker.sln
-  - nuget install xunit-runners -Version 1.9.2 -OutputDirectory test-runner
+  - dotnet restore
+  - dotnet add xunit-runners -Version 2.4.1 -OutputDirectory test-runner
 script:
-- msbuild /p:Configuration=Release CartTracker.sln
+- dotnet test
