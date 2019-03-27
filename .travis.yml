@@ -2,8 +2,5 @@ language: csharp
 solution: CartTracker.sln
 mono: none
 dotnet: 2.1.502
-# install:
-#   - dotnet restore
-#   - dotnet add xunit.runner.visualstudio -Version 2.4.1 CartTracker.UnitTests
 script:
 - dotnet test
