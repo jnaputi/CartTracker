@@ -347,3 +347,6 @@ MigrationBackup/
 
 # Rider IDE
 .idea
+
+# VS Code
+.vscode/

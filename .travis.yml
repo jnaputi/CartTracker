@@ -1,0 +1,5 @@
+language: csharp
+solution: CartTracker.sln
+dotnet: 3.0.100-preview-010184
+script:
+  - dotnet restore
