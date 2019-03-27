@@ -1,6 +1,6 @@
 language: csharp
 solution: CartTracker.sln
 mono: none
-dotnet: 3.0.100-preview-010184
+dotnet: 2.1.502
 script:
   - dotnet restore
