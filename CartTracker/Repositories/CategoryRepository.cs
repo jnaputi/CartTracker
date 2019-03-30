@@ -39,5 +39,13 @@ namespace CartTracker.Repositories
             var nameParameter = new SqlParameter("@CategoryName", newEntity.Name);
             await _context.Database.ExecuteSqlCommandAsync("AddCategory @CategoryName", nameParameter);
         }
+
+        public async Task UpdateAsync(Category updatedEntity)
+        {
+            var idParameter = new SqlParameter("@CategoryId", updatedEntity.CategoryId);
+            var nameParameter = new SqlParameter("@CategoryName", updatedEntity.Name);
+
+            await _context.Database.ExecuteSqlCommandAsync("UpdateCategory", idParameter, nameParameter);
+        }
     }
 }

@@ -67,10 +67,16 @@ namespace CartTracker.Controllers
                 return new ObjectResult(updateResult);
             }
 
-            if (string.IsNullOrWhiteSpace(c))
+            if (string.IsNullOrWhiteSpace(category.Name))
             {
-                
+                updateResult = new Result<string>(false, InsertionErrorMessages.CategoryNameIsEmpty);
+
+                return new ObjectResult(updateResult);
             }
+
+            updateResult = new Result<string>(true, string.Empty);
+
+            return new ObjectResult(updateResult);
         }
     }
 }

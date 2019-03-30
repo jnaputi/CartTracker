@@ -8,5 +8,6 @@ namespace CartTracker.Repositories
         Task<ICollection<TModel>> GetAllAsync();
         Task<bool> DataExistsAsync(TModel entityToCheck);
         Task AddAsync(TModel newEntity);
+        Task UpdateAsync(TModel updatedEntity);
     }
 }
