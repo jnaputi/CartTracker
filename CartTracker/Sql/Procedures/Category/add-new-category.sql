@@ -35,10 +35,9 @@ BEGIN
 
 	INSERT INTO dbo.Categories (
 		[Name],
-		ItemId,
 		DateCreated,
 		LastUpdated)
 	VALUES
-		(@CategoryName, NULL, GETUTCDATE(), GETUTCDATE())
+		(@CategoryName, GETUTCDATE(), GETUTCDATE())
 END
 GO

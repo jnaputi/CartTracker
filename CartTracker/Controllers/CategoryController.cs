@@ -21,8 +21,8 @@ namespace CartTracker.Controllers
             _categoryService = categoryService;
         }
 
-        [Route("all")]
         [HttpGet]
+        [Route("all")]
         public async Task<IActionResult> GetAllCategories()
         {
             IResult<QueryResultData<ICollection<Category>>> queryResult = await _categoryService.GetAllAsync();
@@ -30,8 +30,8 @@ namespace CartTracker.Controllers
             return new ObjectResult(queryResult);
         }
 
-        [Route("create")]
         [HttpPost]
+        [Route("create")]
         public async Task<IActionResult> AddNewCategory([FromForm] Category category)
         {
             IResult<string> insertionResult;
@@ -53,6 +53,24 @@ namespace CartTracker.Controllers
             insertionResult = await _categoryService.AddAsync(category);
 
             return new ObjectResult(insertionResult);
+        }
+
+        [HttpPut]
+        [Route("update")]
+        public async Task<IActionResult> UpdateCategory([FromForm] Category category)
+        {
+            IResult<string> updateResult;
+            
+            if (category == null)
+            {
+                updateResult = new Result<string>(false, UpdateErrorMessages.CategoryIsNull);
+                return new ObjectResult(updateResult);
+            }
+
+            if (string.IsNullOrWhiteSpace(c))
+            {
+                
+            }
         }
     }
 }
