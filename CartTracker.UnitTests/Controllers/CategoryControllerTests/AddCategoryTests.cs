@@ -41,7 +41,7 @@ namespace CartTracker.UnitTests.Controllers.CategoryControllerTests
         [Fact]
         public async void ShouldReturnTheCorrectErrorMessageWhenTheCategoryIsNull()
         {
-            var insertionResult = new Result<string>(false, InsertionErrorMessages.CategoryIsNull);
+            var insertionResult = new Result<string>(false, CategoryErrorMessages.NullCategory);
 
             var mockService = new Mock<IService<Category>>();
             mockService.Setup(mock => mock.AddAsync(Mock.Of<Category>()))
@@ -57,7 +57,7 @@ namespace CartTracker.UnitTests.Controllers.CategoryControllerTests
             // Assert
             result.Should().BeOfType<ObjectResult>()
                 .Which.Value.Should().BeOfType<Result<string>>()
-                .Which.Data.Should().Be(InsertionErrorMessages.CategoryIsNull);
+                .Which.Data.Should().Be(CategoryErrorMessages.NullCategory);
         }
 
         [Fact]
@@ -111,7 +111,7 @@ namespace CartTracker.UnitTests.Controllers.CategoryControllerTests
             // Assert
             result.Should().BeOfType<ObjectResult>()
                 .Which.Value.Should().BeOfType<Result<string>>()
-                .Which.Data.Should().Be(InsertionErrorMessages.CategoryNameIsEmpty);
+                .Which.Data.Should().Be(CategoryErrorMessages.NameIsEmpty);
         }
 
         [Fact]
@@ -149,7 +149,7 @@ namespace CartTracker.UnitTests.Controllers.CategoryControllerTests
                 Name = string.Empty
             };
             
-            var insertionResult = new Result<string>(false, InsertionErrorMessages.CategoryNameIsEmpty);
+            var insertionResult = new Result<string>(false, CategoryErrorMessages.NameIsEmpty);
 
             var mockService = new Mock<IService<Category>>();
             mockService.Setup(mock => mock.AddAsync(category))
@@ -165,7 +165,7 @@ namespace CartTracker.UnitTests.Controllers.CategoryControllerTests
             // Assert
             result.Should().BeOfType<ObjectResult>()
                 .Which.Value.Should().BeOfType<Result<string>>()
-                .Which.Data.Should().Be(InsertionErrorMessages.CategoryNameIsEmpty);
+                .Which.Data.Should().Be(CategoryErrorMessages.NameIsEmpty);
         }
 
         [Fact]
@@ -203,7 +203,7 @@ namespace CartTracker.UnitTests.Controllers.CategoryControllerTests
                 Name = "  \t\t\t         \t\t\t        "
             };
             
-            var insertionResult = new Result<string>(false, InsertionErrorMessages.CategoryNameIsEmpty);
+            var insertionResult = new Result<string>(false, CategoryErrorMessages.NameIsEmpty);
 
             var mockService = new Mock<IService<Category>>();
             mockService.Setup(mock => mock.AddAsync(category))
@@ -219,7 +219,7 @@ namespace CartTracker.UnitTests.Controllers.CategoryControllerTests
             // Assert
             result.Should().BeOfType<ObjectResult>()
                 .Which.Value.Should().BeOfType<Result<string>>()
-                .Which.Data.Should().Be(InsertionErrorMessages.CategoryNameIsEmpty);
+                .Which.Data.Should().Be(CategoryErrorMessages.NameIsEmpty);
         }
 
         [Fact]
@@ -230,7 +230,7 @@ namespace CartTracker.UnitTests.Controllers.CategoryControllerTests
                 Name = "  \t\t\t         \t\t\t        "
             };
             
-            var insertionResult = new Result<string>(false, InsertionErrorMessages.CategoryNameIsEmpty);
+            var insertionResult = new Result<string>(false, CategoryErrorMessages.NameIsEmpty);
 
             var mockService = new Mock<IService<Category>>();
             mockService.Setup(mock => mock.AddAsync(category))
@@ -246,7 +246,7 @@ namespace CartTracker.UnitTests.Controllers.CategoryControllerTests
             // Assert
             result.Should().BeOfType<ObjectResult>()
                 .Which.Value.Should().BeOfType<Result<string>>()
-                .Which.Data.Should().Be(InsertionErrorMessages.CategoryNameIsEmpty);
+                .Which.Data.Should().Be(CategoryErrorMessages.NameIsEmpty);
         }
 
         [Fact]
@@ -290,7 +290,7 @@ namespace CartTracker.UnitTests.Controllers.CategoryControllerTests
             // Assert
             result.Should().BeOfType<ObjectResult>()
                 .Which.Value.Should().BeOfType<Result<string>>()
-                .Which.Data.Should().Be(InsertionErrorMessages.CategoryIsNull);
+                .Which.Data.Should().Be(CategoryErrorMessages.NullCategory);
         }
 
         [Fact]

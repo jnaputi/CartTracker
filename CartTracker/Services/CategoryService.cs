@@ -55,12 +55,12 @@ namespace CartTracker.Services
         {
             if (entityToAdd == null)
             {
-                return new Result<string>(false, InsertionErrorMessages.CategoryIsNull);
+                return new Result<string>(false, CategoryErrorMessages.NullCategory);
             }
 
             if (string.IsNullOrWhiteSpace(entityToAdd.Name))
             {
-                return new Result<string>(false, InsertionErrorMessages.CategoryNameIsEmpty);
+                return new Result<string>(false, CategoryErrorMessages.NameIsEmpty);
             }
 
             entityToAdd.Name = entityToAdd.Name.Trim();
@@ -70,7 +70,7 @@ namespace CartTracker.Services
                 var categoryExists = await _categoryRepository.DataExistsAsync(entityToAdd);
                 if (categoryExists)
                 {
-                    return new Result<string>(false, InsertionErrorMessages.CategoryExists);
+                    return new Result<string>(false, CategoryErrorMessages.AlreadyExists);
                 }
 
                 await _categoryRepository.AddAsync(entityToAdd);
@@ -90,6 +90,50 @@ namespace CartTracker.Services
             catch (SqlException e)
             {
                 _logger.Log(LogLevel.Error, e.Message);
+
+                return new Result<string>(false, DatabaseErrorMessages.DatabaseOperationError);
+            }
+
+            return new Result<string>(true, string.Empty);
+        }
+
+        public async Task<IResult<string>> UpdateAsync(Category updatedEntity)
+        {
+            if (updatedEntity == null)
+            {
+                return new Result<string>(false, CategoryErrorMessages.NullCategory);
+            }
+
+            if (string.IsNullOrWhiteSpace(updatedEntity.Name))
+            {
+                return new Result<string>(false, CategoryErrorMessages.NameIsEmpty);
+            }
+
+            try
+            {
+                var categoryExists = await _categoryRepository.DataExistsAsync(updatedEntity);
+                if (!categoryExists)
+                {
+                    return new Result<string>(false, CategoryErrorMessages.DoesNotExist);
+                }
+
+                await _categoryRepository.UpdateAsync(updatedEntity);
+            }
+            catch (InvalidOperationException invalidOperationException)
+            {
+                _logger.LogError($"{nameof(invalidOperationException)} thrown when updating a Category", invalidOperationException);
+
+                return new Result<string>(false, DatabaseErrorMessages.DatabaseOperationError);
+            }
+            catch (DbUpdateException dbUpdateException)
+            {
+                _logger.LogError($"{nameof(dbUpdateException)} thrown when updating a Category", dbUpdateException);
+
+                return new Result<string>(false, DatabaseErrorMessages.DatabaseOperationError);
+            }
+            catch (SqlException sqlException)
+            {
+                _logger.LogError($"{nameof(sqlException)} thrown when updating a Category", sqlException);
 
                 return new Result<string>(false, DatabaseErrorMessages.DatabaseOperationError);
             }

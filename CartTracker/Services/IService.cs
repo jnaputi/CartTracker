@@ -8,5 +8,6 @@ namespace CartTracker.Services
     {
         Task<IResult<QueryResultData<ICollection<TModel>>>> GetAllAsync();
         Task<IResult<string>> AddAsync(TModel entityToAdd);
+        Task<IResult<string>> UpdateAsync(TModel updatedEntity);
     }
 }

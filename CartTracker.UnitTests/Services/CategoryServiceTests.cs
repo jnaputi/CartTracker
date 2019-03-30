@@ -161,7 +161,7 @@ namespace CartTracker.UnitTests.Services
             
             // Assert
             result.Should().BeOfType<Result<string>>()
-                .Which.Data.Should().Be(InsertionErrorMessages.CategoryIsNull);
+                .Which.Data.Should().Be(CategoryErrorMessages.NullCategory);
         }
 
         [Fact]
@@ -205,7 +205,7 @@ namespace CartTracker.UnitTests.Services
             
             // Assert
             result.Should().BeOfType<Result<string>>()
-                .Which.Data.Should().Be(InsertionErrorMessages.CategoryNameIsEmpty);
+                .Which.Data.Should().Be(CategoryErrorMessages.NameIsEmpty);
         }
 
         [Fact]
@@ -249,7 +249,7 @@ namespace CartTracker.UnitTests.Services
             
             // Assert
             result.Should().BeOfType<Result<string>>()
-                .Which.Data.Should().Be(InsertionErrorMessages.CategoryNameIsEmpty);
+                .Which.Data.Should().Be(CategoryErrorMessages.NameIsEmpty);
         }
 
         [Fact]
@@ -293,7 +293,7 @@ namespace CartTracker.UnitTests.Services
             
             // Assert
             result.Should().BeOfType<Result<string>>()
-                .Which.Data.Should().Be(InsertionErrorMessages.CategoryNameIsEmpty);
+                .Which.Data.Should().Be(CategoryErrorMessages.NameIsEmpty);
         }
 
         [Fact]
@@ -343,7 +343,7 @@ namespace CartTracker.UnitTests.Services
             
             // Assert
             result.Should().BeOfType<Result<string>>()
-                .Which.Data.Should().Be(InsertionErrorMessages.CategoryExists);
+                .Which.Data.Should().Be(CategoryErrorMessages.AlreadyExists);
         }
 
         [Fact]

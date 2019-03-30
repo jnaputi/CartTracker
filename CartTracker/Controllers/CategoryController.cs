@@ -1,12 +1,10 @@
-﻿using System;
-using CartTracker.Models;
+﻿using CartTracker.Models;
 using CartTracker.Results;
 using CartTracker.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CartTracker.Constants;
-using Microsoft.Extensions.Logging;
 
 namespace CartTracker.Controllers
 {
@@ -38,13 +36,13 @@ namespace CartTracker.Controllers
             
             if (category == null)
             {
-                insertionResult = new Result<string>(false, InsertionErrorMessages.CategoryIsNull);
+                insertionResult = new Result<string>(false, CategoryErrorMessages.NullCategory);
                 return new ObjectResult(insertionResult);
             }
 
             if (string.IsNullOrWhiteSpace(category.Name))
             {
-                insertionResult = new Result<string>(false, InsertionErrorMessages.CategoryNameIsEmpty);
+                insertionResult = new Result<string>(false, CategoryErrorMessages.NameIsEmpty);
                 return new ObjectResult(insertionResult);
             }
 
@@ -69,12 +67,12 @@ namespace CartTracker.Controllers
 
             if (string.IsNullOrWhiteSpace(category.Name))
             {
-                updateResult = new Result<string>(false, InsertionErrorMessages.CategoryNameIsEmpty);
+                updateResult = new Result<string>(false, CategoryErrorMessages.NameIsEmpty);
 
                 return new ObjectResult(updateResult);
             }
 
-            updateResult = new Result<string>(true, string.Empty);
+            updateResult = await _categoryService.UpdateAsync(category);
 
             return new ObjectResult(updateResult);
         }
